@@ -1,0 +1,1355 @@
+# Ingredient Consolidation Proposal
+# 
+# This file contains proposed ingredient consolidations.
+# Each section represents a potential parent ingredient with its children.
+# 
+# The same ingredient can appear under multiple parent sections.
+# 
+# To DISABLE a consolidation group, comment out the entire section
+# by adding '#' at the beginning of each line.
+# 
+# To REMOVE specific children from a group, comment out just those lines.
+# 
+# Format:
+# [PARENT_INGREDIENT_NAME]
+# child_ingredient_name,food_group
+# 
+# After editing, run finalizeConsolidation.py to process this file.
+# 
+[FLOUR]
+ALMOND FLOUR,Nut and Seed Products
+AMARANTH FLOUR,Grains and Grain Products
+ARROWROOT FLOUR,Vegetables and Vegetable Products
+BARLEY FLOUR,Grains and Grain Products
+BROWN RICE FLOUR,Grains and Grain Products
+BUCKWHEAT FLOUR,Grains and Grain Products
+CASSAVA FLOUR,Vegetables and Vegetable Products
+CHIA SEED FLOUR,Nut and Seed Products
+CHICKPEA FLOUR,Legumes and Legume Products
+CORN FLOUR,Grains and Grain Products
+CORN MASA FLOUR,Grains and Grain Products
+COTTONSEED FLOUR,Nut and Seed Products
+FABA BEAN FLOUR,Legumes and Legume Products
+FARRO FLOUR,Grains and Grain Products
+GLUTINOUS RICE FLOUR,Grains and Grain Products
+LENTIL FLOUR,Legumes and Legume Products
+LINSEED FLOUR,Nut and Seed Products
+MILLET FLOUR,Grains and Grain Products
+MUSTARD FLOUR,Spices, Herbs and Flavorings
+NAVY BEAN FLOUR,Legumes and Legume Products
+OAT FLOUR,Grains and Grain Products
+PEA FLOUR,Legumes and Legume Products
+PEANUT FLOUR,Legumes and Legume Products
+PECAN FLOUR,Nut and Seed Products
+PISTACHIO FLOUR,Nut and Seed Products
+POTATO FLOUR,Vegetables and Vegetable Products
+QUINOA FLOUR,Grains and Grain Products
+RICE FLOUR,Grains and Grain Products
+RYE FLOUR,Grains and Grain Products
+SESAME FLOUR,Nut and Seed Products
+SORGHUM FLOUR,Grains and Grain Products
+SOY FLOUR,Legumes and Legume Products
+SPELT FLOUR,Grains and Grain Products
+SPROUTED BARLEY FLOUR,Grains and Grain Products
+SPROUTED WHEAT FLOUR,Grains and Grain Products
+TAPIOCA FLOUR,Vegetables and Vegetable Products
+TEFF FLOUR,Grains and Grain Products
+TRITICALE FLOUR,Grains and Grain Products
+WHEAT FLOUR,Grains and Grain Products
+
+[CHEESE]
+AMERICAN CHEESE,Dairy and Dairy Products
+ASIAGO CHEESE,Dairy and Dairy Products
+BLUE CHEESE,Dairy and Dairy Products
+CAMEMBERT CHEESE,Dairy and Dairy Products
+CHEDDAR CHEESE,Dairy and Dairy Products
+CHEESE,Dairy and Dairy Products
+COLBY CHEESE,Dairy and Dairy Products
+COTTAGE CHEESE,Dairy and Dairy Products
+CREAM CHEESE,Dairy and Dairy Products
+EDAM CHEESE,Dairy and Dairy Products
+FETA CHEESE,Dairy and Dairy Products
+FONTINA CHEESE,Dairy and Dairy Products
+GOAT CHEESE,Dairy and Dairy Products
+GOUDA CHEESE,Dairy and Dairy Products
+GOUDA CHEESE WITH HOT PEPPER,Dairy and Dairy Products
+GRANA CHEESE,Dairy and Dairy Products
+GRANULAR CHEESE,Dairy and Dairy Products
+HAVARTI CHEESE,Dairy and Dairy Products
+HOOP CHEESE,Dairy and Dairy Products
+LIMBURGER CHEESE,Dairy and Dairy Products
+MANCHEGO CHEESE,Dairy and Dairy Products
+MONTEREY JACK CHEESE,Dairy and Dairy Products
+MONTEREY JACK CHEESE WITH HOT PEPPER,Dairy and Dairy Products
+MOZZARELLA CHEESE,Dairy and Dairy Products
+NEUFCHATEL CHEESE,Dairy and Dairy Products
+PARMESAN CHEESE,Dairy and Dairy Products
+PECORINO ROMANO CHEESE,Dairy and Dairy Products
+PROVOLONE CHEESE,Dairy and Dairy Products
+RICOTTA CHEESE,Dairy and Dairy Products
+RICOTTA IMPASTATA CHEESE,Dairy and Dairy Products
+ROMANO CHEESE,Dairy and Dairy Products
+SEMISOFT CHEESE,Dairy and Dairy Products
+SHEEP CHEESE,Dairy and Dairy Products
+SWISS CHEESE,Dairy and Dairy Products
+
+# [SEED]
+# AMBRETTE SEED,Spices, Herbs and Flavorings
+# ANGELICA SEED,Spices, Herbs and Flavorings
+# ANNATTO SEED,Spices, Herbs and Flavorings
+# BLACK CARAWAY SEED,Spices, Herbs and Flavorings
+# CARAWAY SEED,Spices, Herbs and Flavorings
+# CELERY SEED,Spices, Herbs and Flavorings
+# CHIA SEED,Nut and Seed Products
+# CHIA SEED FLOUR,Nut and Seed Products
+# CORIANDER SEED,Spices, Herbs and Flavorings
+# CUMIN SEED,Spices, Herbs and Flavorings
+# DILL SEED,Spices, Herbs and Flavorings
+# FENNEL SEED,Spices, Herbs and Flavorings
+# FENUGREEK SEED,Spices, Herbs and Flavorings
+# GRAPE SEED,Nut and Seed Products
+# HEMP SEED,Nut and Seed Products
+# HOT PEPPER SEED,Spices, Herbs and Flavorings
+# KANIWA SEED,Nut and Seed Products
+# MARJORAM SEED,Spices, Herbs and Flavorings
+# MUSTARD SEED,Spices, Herbs and Flavorings
+# POPPY SEED,Spices, Herbs and Flavorings
+# PSYLLIUM SEED HUSK,Nut and Seed Products
+# PUMPKIN SEED,Nut and Seed Products
+# RASPBERRY SEED,Fruits and Fruit Products
+# SESAME SEED,Nut and Seed Products
+# STRAWBERRY SEED,Nut and Seed Products
+# SUNFLOWER SEED,Nut and Seed Products
+
+# [MEAT]
+# BUFFALO MEAT,Meats and Meat Products
+# CHICKEN BREAST MEAT,Meats and Meat Products
+# CHICKEN DARK MEAT,Meats and Meat Products
+# CHICKEN LEG MEAT,Meats and Meat Products
+# CHICKEN MEAT,Meats and Meat Products
+# CHICKEN THIGH MEAT,Meats and Meat Products
+# CLAM MEAT,Seafood and Seafood Products
+# COCONUT MEAT,Nut and Seed Products
+# CRAB MEAT,Seafood and Seafood Products
+# LAMB MEAT,Meats and Meat Products
+# LOBSTER MEAT,Seafood and Seafood Products
+# MUSSEL MEAT,Seafood and Seafood Products
+# OYSTER MEAT,Seafood and Seafood Products
+# SCALLOP MEAT,Meats and Meat Products
+# SHEEP MEAT,Meats and Meat Products
+# SHRIMP MEAT,Seafood and Seafood Products
+# TURKEY BREAST MEAT,Meats and Meat Products
+# TURKEY DARK MEAT,Meats and Meat Products
+# TURKEY MEAT,Meats and Meat Products
+
+[BEAN]
+BEAN,Legumes and Legume Products
+BLACK BEAN,Legumes and Legume Products
+CANNELLINI BEAN,Legumes and Legume Products
+COCOA BEAN,Nut and Seed Products
+# COFFEE BEAN,Nut and Seed Products
+CRANBERRY BEAN,Legumes and Legume Products
+EDEMAME BEAN,Legumes and Legume Products
+FABA BEAN,Legumes and Legume Products
+FABA BEAN FLOUR,Legumes and Legume Products
+GREAT NORTHERN BEAN,Legumes and Legume Products
+GREEN BEAN,Legumes and Legume Products
+KIDNEY BEAN,Legumes and Legume Products
+LIMA BEAN,Legumes and Legume Products
+MUNG BEAN,Legumes and Legume Products
+NAVY BEAN,Legumes and Legume Products
+NAVY BEAN FLOUR,Legumes and Legume Products
+PINK BEAN,Legumes and Legume Products
+PINTO BEAN,Legumes and Legume Products
+RED BEAN,Legumes and Legume Products
+
+# [PASTE]
+# ALMOND PASTE,Nut and Seed Products
+# APPLE PASTE,Fruits and Fruit Products
+# DATE PASTE,Fruits and Fruit Products
+# FIG PASTE,Fruits and Fruit Products
+# GARLIC PASTE,Vegetables and Vegetable Products
+# GINGER PASTE,Vegetables and Vegetable Products
+# HAZELNUT PASTE,Nut and Seed Products
+# HOT PEPPER PASTE,Spices, Herbs and Flavorings
+# PEACH PASTE,Fruits and Fruit Products
+# PRUNE PASTE,Fruits and Fruit Products
+# RAISIN PASTE,Fruits and Fruit Products
+# SESAME PASTE,Nut and Seed Products
+# SOYBEAN PASTE,Legumes and Legume Products
+# TAMARIND PASTE,Fruits and Fruit Products
+# TOMATO PASTE,Vegetables and Vegetable Products
+
+[RICE]
+BROWN RICE,Grains and Grain Products
+# BROWN RICE FLOUR,Grains and Grain Products
+BROWN RICE PASTA,Grains and Grain Products
+GLUTINOUS RICE,Grains and Grain Products
+# GLUTINOUS RICE FLOUR,Grains and Grain Products
+RICE,Grains and Grain Products
+RICE BRAN,Grains and Grain Products
+# RICE FLOUR,Grains and Grain Products
+RICE HULLS,Grains and Grain Products
+# RICE NOODLES,Grains and Grain Products
+# RICE PASTA,Grains and Grain Products
+RICE STARCH,Grains and Grain Products
+# RICE VINEGAR,Spices, Herbs and Flavorings
+WILD RICE,Grains and Grain Products
+
+[TEA]
+BLACK TEA,Spices, Herbs and Flavorings
+BREWED BLACK TEA,Beverages
+BREWED GREEN TEA,Beverages
+BREWED GUAYUSA TEA,Beverages
+BREWED JAVA TEA,Beverages
+BREWED TEA,Beverages
+BREWED WHITE TEA,Beverages
+GREEN TEA,Spices, Herbs and Flavorings
+GUAYUSA TEA,Spices, Herbs and Flavorings
+JAVA TEA,Spices, Herbs and Flavorings
+OOLONG TEA,Spices, Herbs and Flavorings
+ROOIBOS TEA,Spices, Herbs and Flavorings
+TEA,Spices, Herbs and Flavorings
+WHITE TEA,Spices, Herbs and Flavorings
+
+[CHICKEN]
+CHICKEN BONE,Meats and Meat Products
+CHICKEN BREAST MEAT,Meats and Meat Products
+CHICKEN BROTH,Spices, Herbs and Flavorings
+CHICKEN DARK MEAT,Meats and Meat Products
+CHICKEN DRUMSTICK,Meats and Meat Products
+CHICKEN FAT,Fats and Oils
+CHICKEN JUICE,Meats and Meat Products
+CHICKEN LEG MEAT,Meats and Meat Products
+CHICKEN MEAT,Meats and Meat Products
+CHICKEN SKIN,Meats and Meat Products
+CHICKEN STOCK,Spices, Herbs and Flavorings
+CHICKEN TENDERLOIN,Meats and Meat Products
+CHICKEN THIGH MEAT,Meats and Meat Products
+
+# [LEAF]
+# ARTICHOKE LEAF,Vegetables and Vegetable Products
+# BLACKBERRY LEAF,Spices, Herbs and Flavorings
+# CELERY LEAF,Spices, Herbs and Flavorings
+# CHESTNUT LEAF,Spices, Herbs and Flavorings
+# CURRY LEAF,Spices, Herbs and Flavorings
+# LEAF LETTUCE,Vegetables and Vegetable Products
+# LEAF LETTUCE JUICE,Vegetables and Vegetable Products
+# LEMON BALM LEAF,Spices, Herbs and Flavorings
+# PEACH LEAF,Spices, Herbs and Flavorings
+# PEPPERMINT LEAF,Spices, Herbs and Flavorings
+# ROSE LEAF,Spices, Herbs and Flavorings
+# SASSAFRAS LEAF,Spices, Herbs and Flavorings
+# YERBA MATE LEAF,Spices, Herbs and Flavorings
+
+[STOCK]
+BEEF STOCK,Spices, Herbs and Flavorings
+CABBAGE STOCK,Spices, Herbs and Flavorings
+CARROT STOCK,Spices, Herbs and Flavorings
+CHICKEN STOCK,Spices, Herbs and Flavorings
+CRAB STOCK,Spices, Herbs and Flavorings
+FISH STOCK,Spices, Herbs and Flavorings
+LEEK STOCK,Spices, Herbs and Flavorings
+LOBSTER STOCK,Spices, Herbs and Flavorings
+MUSHROOM STOCK,Spices, Herbs and Flavorings
+ONION STOCK,Spices, Herbs and Flavorings
+PORK STOCK,Spices, Herbs and Flavorings
+TURKEY STOCK,Spices, Herbs and Flavorings
+VEAL STOCK,Spices, Herbs and Flavorings
+
+# Manually changed rolled to rolled grain
+[ROLLED GRAIN]
+ROLLED BARLEY,Grains and Grain Products
+ROLLED CORN,Grains and Grain Products
+ROLLED MILLET,Grains and Grain Products
+ROLLED OAT,Grains and Grain Products
+ROLLED RYE,Grains and Grain Products
+ROLLED SOYBEAN,Legumes and Legume Products
+ROLLED SPELT,Grains and Grain Products
+ROLLED SPROUTED BARLEY,Grains and Grain Products
+ROLLED SPROUTED OAT,Grains and Grain Products
+ROLLED SPROUTED RYE,Grains and Grain Products
+ROLLED TRITICALE,Grains and Grain Products
+ROLLED WHEAT,Grains and Grain Products
+
+[PEPPER]
+BLACK PEPPER,Spices, Herbs and Flavorings
+# GOUDA CHEESE WITH HOT PEPPER,Dairy and Dairy Products
+HOT PEPPER,Spices, Herbs and Flavorings
+HOT PEPPER PASTE,Spices, Herbs and Flavorings
+HOT PEPPER SAUCE,Spices, Herbs and Flavorings
+HOT PEPPER SEED,Spices, Herbs and Flavorings
+# MONTEREY JACK CHEESE WITH HOT PEPPER,Dairy and Dairy Products
+PEPPER,Vegetables and Vegetable Products
+SWEET PEPPER,Vegetables and Vegetable Products
+# SWEET PEPPER JUICE,Vegetables and Vegetable Products
+WHITE PEPPER,Spices, Herbs and Flavorings
+
+[STARCH]
+ARROWROOT STARCH,Grains and Grain Products
+CASSAVA STARCH,Grains and Grain Products
+CORN STARCH,Grains and Grain Products
+FOOD STARCH,Grains and Grain Products
+PEA STARCH,Legumes and Legume Products
+POTATO STARCH,Grains and Grain Products
+RICE STARCH,Grains and Grain Products
+SWEET POTATO STARCH,Grains and Grain Products
+TAPIOCA STARCH,Grains and Grain Products
+WHEAT STARCH,Grains and Grain Products
+
+[WHEAT]
+ROLLED WHEAT,Grains and Grain Products
+SPROUTED WHEAT FLOUR,Grains and Grain Products
+WHEAT,Grains and Grain Products
+WHEAT BRAN,Grains and Grain Products
+WHEAT FLOUR,Grains and Grain Products
+WHEAT GERM,Grains and Grain Products
+# WHEAT GRASS,Vegetables and Vegetable Products
+# WHEAT GRASS JUICE,Vegetables and Vegetable Products
+WHEAT STARCH,Grains and Grain Products
+
+[BEEF]
+BEEF,Meats and Meat Products
+BEEF BRISKET,Meats and Meat Products
+BEEF BROTH,Spices, Herbs and Flavorings
+BEEF HEART,Meats and Meat Products
+BEEF RIB,Meats and Meat Products
+BEEF SIRLOIN,Meats and Meat Products
+BEEF STEAK,Meats and Meat Products
+BEEF STOCK,Spices, Herbs and Flavorings
+GROUND BEEF,Meats and Meat Products
+
+[PORK]
+GROUND PORK,Meats and Meat Products
+PORK,Fats and Oils
+PORK BELLY,Meats and Meat Products
+PORK BROTH,Spices, Herbs and Flavorings
+PORK LOIN,Meats and Meat Products
+PORK RIB,Meats and Meat Products
+PORK SHOULDER,Meats and Meat Products
+PORK STOCK,Spices, Herbs and Flavorings
+SALT PORK,Meats and Meat Products
+
+[BROTH]
+BEEF BROTH,Spices, Herbs and Flavorings
+BROTH,Spices, Herbs and Flavorings
+CHICKEN BROTH,Spices, Herbs and Flavorings
+CLAM BROTH,Spices, Herbs and Flavorings
+MUSHROOM BROTH,Spices, Herbs and Flavorings
+ONION BROTH,Spices, Herbs and Flavorings
+PORK BROTH,Spices, Herbs and Flavorings
+TURKEY BROTH,Spices, Herbs and Flavorings
+VEGETABLE BROTH,Spices, Herbs and Flavorings
+
+# [SWEET]
+# SWEET BAY,Spices, Herbs and Flavorings
+# SWEET CHOCOLATE,Nut and Seed Products
+# SWEET ORANGE,Fruits and Fruit Products
+# SWEET PEPPER,Vegetables and Vegetable Products
+# SWEET PEPPER JUICE,Vegetables and Vegetable Products
+# SWEET POTATO,Vegetables and Vegetable Products
+# SWEET POTATO JUICE,Vegetables and Vegetable Products
+# SWEET POTATO STARCH,Grains and Grain Products
+
+[CORN]
+CORN,Grains and Grain Products
+CORN BRAN,Grains and Grain Products
+CORN FLOUR,Grains and Grain Products
+CORN MASA FLOUR,Grains and Grain Products
+CORN MEAL,Grains and Grain Products
+CORN STARCH,Grains and Grain Products
+CORN VINEGAR,Spices, Herbs and Flavorings
+ROLLED CORN,Grains and Grain Products
+
+# [FRUIT]
+# CASHEW FRUIT,Fruits and Fruit Products
+# FRUIT,Fruits and Fruit Products
+# FRUIT JUICE,Fruits and Fruit Products
+# MONK FRUIT,Fruits and Fruit Products
+# MONK FRUIT JUICE,Fruits and Fruit Products
+# PASSION FRUIT,Fruits and Fruit Products
+# PASSION FRUIT JUICE,Fruits and Fruit Products
+# STAR FRUIT,Fruits and Fruit Products
+
+[CREAM]
+COCONUT CREAM,Nut and Seed Products
+CREAM,Dairy and Dairy Products
+CREAM CHEESE,Dairy and Dairy Products
+EWE CREAM,Dairy and Dairy Products
+GOAT CREAM,Dairy and Dairy Products
+HEAVY CREAM,Dairy and Dairy Products
+LIGHT CREAM,Dairy and Dairy Products
+SOUR CREAM,Dairy and Dairy Products
+
+[BRAN]
+BRAN,Grains and Grain Products
+BUCKWHEAT BRAN,Grains and Grain Products
+CORN BRAN,Grains and Grain Products
+MUSTARD BRAN,Spices, Herbs and Flavorings
+OAT BRAN,Grains and Grain Products
+RICE BRAN,Grains and Grain Products
+SOY BRAN,Legumes and Legume Products
+WHEAT BRAN,Grains and Grain Products
+
+# [BREWED]
+# BREWED BLACK TEA,Beverages
+# BREWED COFFEE,Beverages
+# BREWED GREEN TEA,Beverages
+# BREWED GUAYUSA TEA,Beverages
+# BREWED JAVA TEA,Beverages
+# BREWED TEA,Beverages
+# BREWED WHITE TEA,Beverages
+
+[TURKEY]
+TURKEY BREAST MEAT,Meats and Meat Products
+TURKEY BROTH,Spices, Herbs and Flavorings
+TURKEY DARK MEAT,Meats and Meat Products
+TURKEY FAT,Fats and Oils
+TURKEY MEAT,Meats and Meat Products
+TURKEY SKIN,Meats and Meat Products
+TURKEY STOCK,Spices, Herbs and Flavorings
+
+# [BLACK]
+# BLACK BEAN,Legumes and Legume Products
+# BLACK CARAWAY SEED,Spices, Herbs and Flavorings
+# BLACK CURRANT,Fruits and Fruit Products
+# BLACK CURRANT JUICE,Fruits and Fruit Products
+# BLACK PEPPER,Spices, Herbs and Flavorings
+# BLACK TEA,Spices, Herbs and Flavorings
+# BREWED BLACK TEA,Beverages
+
+[LEMON]
+LEMON,Fruits and Fruit Products
+# LEMON BALM,Spices, Herbs and Flavorings
+# LEMON BALM LEAF,Spices, Herbs and Flavorings
+LEMON JUICE,Fruits and Fruit Products
+# LEMON MYRTLE,Spices, Herbs and Flavorings
+LEMON PEEL,Fruits and Fruit Products
+# LEMON VERBENA,Spices, Herbs and Flavorings
+
+[MILK]
+ANHYDROUS MILK FAT,Fats and Oils
+BUFFALO MILK,Dairy and Dairy Products
+EWE MILK,Dairy and Dairy Products
+GOAT MILK,Dairy and Dairy Products
+MILK,Dairy and Dairy Products
+# MILK CHOCOLATE,Nut and Seed Products
+MILK FAT,Fats and Oils
+
+[BUTTER]
+BUTTER,Fats and Oils
+BUTTER OIL,Fats and Oils
+COCOA BUTTER,Nut and Seed Products
+GOAT BUTTER,Fats and Oils
+ILLIPE BUTTER,Nut and Seed Products
+MANGO BUTTER,Fats and Oils
+SHEA BUTTER,Nut and Seed Products
+
+[VINEGAR]
+BALSAMIC VINEGAR,Spices, Herbs and Flavorings
+CIDER VINEGAR,Spices, Herbs and Flavorings
+CORN VINEGAR,Spices, Herbs and Flavorings
+MALT VINEGAR,Spices, Herbs and Flavorings
+RICE VINEGAR,Spices, Herbs and Flavorings
+UME PLUM VINEGAR,Spices, Herbs and Flavorings
+VINEGAR,Spices, Herbs and Flavorings
+
+# [BERRY]
+# ACAI BERRY,Fruits and Fruit Products
+# ACAI BERRY JUICE,Fruits and Fruit Products
+# BERRY,Fruits and Fruit Products
+# JUNIPER BERRY,Fruits and Fruit Products
+# PARTRIDGE BERRY,Fruits and Fruit Products
+# SCHISANDRA BERRY,Fruits and Fruit Products
+# SLOE BERRY,Fruits and Fruit Products
+
+[BARLEY]
+BARLEY,Grains and Grain Products
+BARLEY FLOUR,Grains and Grain Products
+BARLEY GRASS,Vegetables and Vegetable Products
+ROLLED BARLEY,Grains and Grain Products
+ROLLED SPROUTED BARLEY,Grains and Grain Products
+SPROUTED BARLEY FLOUR,Grains and Grain Products
+
+[LETTUCE]
+HEAD LETTUCE,Vegetables and Vegetable Products
+LEAF LETTUCE,Vegetables and Vegetable Products
+LEAF LETTUCE JUICE,Vegetables and Vegetable Products
+LETTUCE,Vegetables and Vegetable Products
+ROMAINE LETTUCE,Vegetables and Vegetable Products
+ROMAINE LETTUCE JUICE,Vegetables and Vegetable Products
+
+[ORANGE]
+MANDARIN ORANGE,Fruits and Fruit Products
+MANDARIN ORANGE JUICE,Fruits and Fruit Products
+ORANGE,Fruits and Fruit Products
+ORANGE JUICE,Fruits and Fruit Products
+ORANGE PEEL,Fruits and Fruit Products
+SWEET ORANGE,Fruits and Fruit Products
+
+[POTATO]
+POTATO,Vegetables and Vegetable Products
+POTATO FLOUR,Vegetables and Vegetable Products
+POTATO STARCH,Grains and Grain Products
+SWEET POTATO,Vegetables and Vegetable Products
+SWEET POTATO JUICE,Vegetables and Vegetable Products
+SWEET POTATO STARCH,Grains and Grain Products
+
+# [MUSTARD]
+# MUSTARD BRAN,Spices, Herbs and Flavorings
+# MUSTARD FLOUR,Spices, Herbs and Flavorings
+# MUSTARD FLOWER,Spices, Herbs and Flavorings
+# MUSTARD GREENS,Vegetables and Vegetable Products
+# MUSTARD SEED,Spices, Herbs and Flavorings
+# PREPARED MUSTARD,Spices, Herbs and Flavorings
+
+# [WHITE]
+# BREWED WHITE TEA,Beverages
+# EGG WHITE,Eggs and Egg Products
+# WHITE CHOCOLATE,Nut and Seed Products
+# WHITE PEPPER,Spices, Herbs and Flavorings
+# WHITE PINE BARK,Spices, Herbs and Flavorings
+# WHITE TEA,Spices, Herbs and Flavorings
+
+# [HOT]
+# GOUDA CHEESE WITH HOT PEPPER,Dairy and Dairy Products
+# HOT PEPPER,Spices, Herbs and Flavorings
+# HOT PEPPER PASTE,Spices, Herbs and Flavorings
+# HOT PEPPER SAUCE,Spices, Herbs and Flavorings
+# HOT PEPPER SEED,Spices, Herbs and Flavorings
+# MONTEREY JACK CHEESE WITH HOT PEPPER,Dairy and Dairy Products
+
+# [FLOWER]
+# ARNICA FLOWER,Spices, Herbs and Flavorings
+# EDIBLE FLOWER,Spices, Herbs and Flavorings
+# GERMAN CHAMOMILE FLOWER,Spices, Herbs and Flavorings
+# MUSTARD FLOWER,Spices, Herbs and Flavorings
+# ROMAN CHAMOMILE FLOWER,Spices, Herbs and Flavorings
+# ROSE FLOWER,Spices, Herbs and Flavorings
+
+# [SAUCE]
+# APPLE SAUCE,Fruits and Fruit Products
+# FISH SAUCE,Spices, Herbs and Flavorings
+# HOT PEPPER SAUCE,Spices, Herbs and Flavorings
+# SOY SAUCE,Spices, Herbs and Flavorings
+# TOMATO SAUCE,Vegetables and Vegetable Products
+# WORCESTERSHIRE SAUCE,Spices, Herbs and Flavorings
+
+[CURRANT]
+BLACK CURRANT,Fruits and Fruit Products
+BLACK CURRANT JUICE,Fruits and Fruit Products
+CURRANT,Fruits and Fruit Products
+RED CURRANT,Fruits and Fruit Products
+RED CURRANT JUICE,Fruits and Fruit Products
+
+# [SPROUTED]
+# ROLLED SPROUTED BARLEY,Grains and Grain Products
+# ROLLED SPROUTED OAT,Grains and Grain Products
+# ROLLED SPROUTED RYE,Grains and Grain Products
+# SPROUTED BARLEY FLOUR,Grains and Grain Products
+# SPROUTED WHEAT FLOUR,Grains and Grain Products
+
+[APPLE]
+APPLE,Fruits and Fruit Products
+APPLE CIDER,Fruits and Fruit Products
+APPLE JUICE,Fruits and Fruit Products
+APPLE PASTE,Fruits and Fruit Products
+APPLE SAUCE,Fruits and Fruit Products
+
+[ONION]
+GREEN ONION,Vegetables and Vegetable Products
+ONION,Vegetables and Vegetable Products
+ONION BROTH,Spices, Herbs and Flavorings
+ONION JUICE,Vegetables and Vegetable Products
+ONION STOCK,Spices, Herbs and Flavorings
+
+[CHOCOLATE]
+CHOCOLATE LIQUOR,Nut and Seed Products
+MILK CHOCOLATE,Nut and Seed Products
+SEMISWEET CHOCOLATE,Nut and Seed Products
+SWEET CHOCOLATE,Nut and Seed Products
+WHITE CHOCOLATE,Nut and Seed Products
+
+[OAT]
+OAT,Grains and Grain Products
+OAT BRAN,Grains and Grain Products
+OAT FLOUR,Grains and Grain Products
+ROLLED OAT,Grains and Grain Products
+ROLLED SPROUTED OAT,Grains and Grain Products
+
+# [ROOT]
+# ANGELICA ROOT,Spices, Herbs and Flavorings
+# CHICORY ROOT,Vegetables and Vegetable Products
+# GALANGAL ROOT,Vegetables and Vegetable Products
+# KONJAC ROOT,Vegetables and Vegetable Products
+# MACA ROOT,Spices, Herbs and Flavorings
+
+# [PEEL]
+# CITRUS PEEL,Fruits and Fruit Products
+# LEMON PEEL,Fruits and Fruit Products
+# LIME PEEL,Fruits and Fruit Products
+# ORANGE PEEL,Fruits and Fruit Products
+# TANGERINE PEEL,Fruits and Fruit Products
+
+# [NUT]
+# BRAZIL NUT,Nut and Seed Products
+# CASHEW NUT,Nut and Seed Products
+# MACADAMIA NUT,Nut and Seed Products
+# PINE NUT,Nut and Seed Products
+# SHEA NUT,Nut and Seed Products
+
+[SESAME]
+SESAME FLOUR,Nut and Seed Products
+SESAME MEAL,Nut and Seed Products
+SESAME PASTE,Nut and Seed Products
+SESAME SEED,Nut and Seed Products
+
+# [GREEN]
+# BREWED GREEN TEA,Beverages
+# GREEN BEAN,Legumes and Legume Products
+# GREEN ONION,Vegetables and Vegetable Products
+# GREEN TEA,Spices, Herbs and Flavorings
+
+[CELERY]
+CELERY,Vegetables and Vegetable Products
+CELERY JUICE,Vegetables and Vegetable Products
+CELERY LEAF,Spices, Herbs and Flavorings
+CELERY SEED,Spices, Herbs and Flavorings
+
+[COCONUT]
+COCONUT,Nut and Seed Products
+COCONUT CREAM,Nut and Seed Products
+COCONUT MEAT,Nut and Seed Products
+COCONUT WATER,Beverages
+
+[MUSHROOM]
+MUSHROOM,Fungi
+MUSHROOM BROTH,Spices, Herbs and Flavorings
+MUSHROOM JUICE,Fungi
+MUSHROOM STOCK,Spices, Herbs and Flavorings
+
+[TOMATO]
+TOMATO,Vegetables and Vegetable Products
+TOMATO JUICE,Vegetables and Vegetable Products
+TOMATO PASTE,Vegetables and Vegetable Products
+TOMATO SAUCE,Vegetables and Vegetable Products
+
+[COCOA]
+COCOA BEAN,Nut and Seed Products
+COCOA BUTTER,Nut and Seed Products
+COCOA NIBS,Nut and Seed Products
+COCOA POWDER,Nut and Seed Products
+
+[GOAT]
+GOAT BUTTER,Fats and Oils
+GOAT CHEESE,Dairy and Dairy Products
+GOAT CREAM,Dairy and Dairy Products
+GOAT MILK,Dairy and Dairy Products
+
+[CABBAGE]
+CABBAGE,Vegetables and Vegetable Products
+CABBAGE JUICE,Vegetables and Vegetable Products
+CABBAGE STOCK,Spices, Herbs and Flavorings
+NAPA CABBAGE,Vegetables and Vegetable Products
+
+[SOYBEAN]
+ROLLED SOYBEAN,Legumes and Legume Products
+SOYBEAN,Legumes and Legume Products
+SOYBEAN MEAL,Legumes and Legume Products
+SOYBEAN PASTE,Legumes and Legume Products
+
+[CLAM]
+CLAM,Seafood and Seafood Products
+CLAM BROTH,Spices, Herbs and Flavorings
+CLAM JUICE,Seafood and Seafood Products
+CLAM MEAT,Seafood and Seafood Products
+
+[PEACH]
+PEACH,Fruits and Fruit Products
+PEACH JUICE,Fruits and Fruit Products
+PEACH LEAF,Spices, Herbs and Flavorings
+PEACH PASTE,Fruits and Fruit Products
+
+[EGG]
+EGG WHITE,Eggs and Egg Products
+EGG YOLK,Eggs and Egg Products
+LIQUID WHOLE EGG,Eggs and Egg Products
+WHOLE EGG,Eggs and Egg Products
+
+[RYE]
+ROLLED RYE,Grains and Grain Products
+ROLLED SPROUTED RYE,Grains and Grain Products
+RYE,Grains and Grain Products
+RYE FLOUR,Grains and Grain Products
+
+# [GRASS]
+# ALFALFA GRASS,Spices, Herbs and Flavorings
+# BARLEY GRASS,Vegetables and Vegetable Products
+# WHEAT GRASS,Vegetables and Vegetable Products
+# WHEAT GRASS JUICE,Vegetables and Vegetable Products
+
+[SQUASH]
+BUTTERNUT SQUASH,Vegetables and Vegetable Products
+SQUASH,Vegetables and Vegetable Products
+SUMMER SQUASH,Vegetables and Vegetable Products
+WINTER SQUASH,Vegetables and Vegetable Products
+
+[SALT]
+ROCK SALT,Spices, Herbs and Flavorings
+SALT,Spices, Herbs and Flavorings
+SALT PORK,Meats and Meat Products
+SEA SALT,Spices, Herbs and Flavorings
+
+# [FAT]
+# ANHYDROUS MILK FAT,Fats and Oils
+# CHICKEN FAT,Fats and Oils
+# MILK FAT,Fats and Oils
+# TURKEY FAT,Fats and Oils
+
+[YEAST]
+BAKERS YEAST,Fungi
+BREWERS YEAST,Fungi
+TORULA YEAST,Fungi
+YEAST,Fungi
+
+# [BROWN]
+# BROWN RICE,Grains and Grain Products
+# BROWN RICE FLOUR,Grains and Grain Products
+# BROWN RICE PASTA,Grains and Grain Products
+
+# [RED]
+# RED BEAN,Legumes and Legume Products
+# RED CURRANT,Fruits and Fruit Products
+# RED CURRANT JUICE,Fruits and Fruit Products
+
+[ALMOND]
+ALMOND,Nut and Seed Products
+ALMOND FLOUR,Nut and Seed Products
+ALMOND PASTE,Nut and Seed Products
+
+[AMARANTH]
+AMARANTH,Grains and Grain Products
+AMARANTH FLOUR,Grains and Grain Products
+AMARANTH GRAIN,Grains and Grain Products
+
+[ANGELICA]
+ANGELICA,Spices, Herbs and Flavorings
+ANGELICA ROOT,Spices, Herbs and Flavorings
+ANGELICA SEED,Spices, Herbs and Flavorings
+
+[BLACKBERRY]
+BLACKBERRY,Fruits and Fruit Products
+BLACKBERRY JUICE,Fruits and Fruit Products
+BLACKBERRY LEAF,Spices, Herbs and Flavorings
+
+[BUCKWHEAT]
+BUCKWHEAT,Grains and Grain Products
+BUCKWHEAT BRAN,Grains and Grain Products
+BUCKWHEAT FLOUR,Grains and Grain Products
+
+[CARROT]
+CARROT,Vegetables and Vegetable Products
+CARROT JUICE,Fruits and Fruit Products
+CARROT STOCK,Spices, Herbs and Flavorings
+
+[CASSAVA]
+CASSAVA,Vegetables and Vegetable Products
+CASSAVA FLOUR,Vegetables and Vegetable Products
+CASSAVA STARCH,Grains and Grain Products
+
+[CRANBERRY]
+CRANBERRY,Fruits and Fruit Products
+CRANBERRY BEAN,Legumes and Legume Products
+CRANBERRY JUICE,Fruits and Fruit Products
+
+[FENNEL]
+FENNEL,Vegetables and Vegetable Products
+FENNEL JUICE,Vegetables and Vegetable Products
+FENNEL SEED,Spices, Herbs and Flavorings
+
+# [FISH]
+# FISH ROE,Seafood and Seafood Products
+# FISH SAUCE,Spices, Herbs and Flavorings
+# FISH STOCK,Spices, Herbs and Flavorings
+
+[GARLIC]
+GARLIC,Vegetables and Vegetable Products
+GARLIC JUICE,Vegetables and Vegetable Products
+GARLIC PASTE,Vegetables and Vegetable Products
+
+[GINGER]
+GINGER,Vegetables and Vegetable Products
+GINGER JUICE,Vegetables and Vegetable Products
+GINGER PASTE,Vegetables and Vegetable Products
+
+[OYSTER]
+OYSTER,Seafood and Seafood Products
+OYSTER JUICE,Seafood and Seafood Products
+OYSTER MEAT,Seafood and Seafood Products
+
+[PEAR]
+PEAR,Fruits and Fruit Products
+PEAR JUICE,Fruits and Fruit Products
+PRICKLY PEAR JUICE,Fruits and Fruit Products
+
+[PUMPKIN]
+PUMPKIN,Vegetables and Vegetable Products
+PUMPKIN JUICE,Vegetables and Vegetable Products
+PUMPKIN SEED,Nut and Seed Products
+
+[RAISIN]
+RAISIN,Fruits and Fruit Products
+RAISIN JUICE,Fruits and Fruit Products
+RAISIN PASTE,Fruits and Fruit Products
+
+[RASPBERRY]
+RASPBERRY,Fruits and Fruit Products
+RASPBERRY JUICE,Fruits and Fruit Products
+RASPBERRY SEED,Fruits and Fruit Products
+
+[ROSE]
+ROSE FLOWER,Spices, Herbs and Flavorings
+ROSE HIP,Fruits and Fruit Products
+ROSE LEAF,Spices, Herbs and Flavorings
+
+[SHRIMP]
+SHRIMP,Seafood and Seafood Products
+SHRIMP MEAT,Seafood and Seafood Products
+SHRIMP SHELL,Seafood and Seafood Products
+
+[STRAWBERRY]
+STRAWBERRY,Fruits and Fruit Products
+STRAWBERRY JUICE,Fruits and Fruit Products
+STRAWBERRY SEED,Nut and Seed Products
+
+[TAMARIND]
+TAMARIND,Fruits and Fruit Products
+TAMARIND JUICE,Fruits and Fruit Products
+TAMARIND PASTE,Fruits and Fruit Products
+
+[TANGERINE]
+TANGERINE,Fruits and Fruit Products
+TANGERINE JUICE,Fruits and Fruit Products
+TANGERINE PEEL,Fruits and Fruit Products
+
+[WATERMELON]
+WATERMELON,Fruits and Fruit Products
+WATERMELON JUICE,Fruits and Fruit Products
+WATERMELON RIND,Fruits and Fruit Products
+
+[CHAMOMILE]
+CHAMOMILE,Spices, Herbs and Flavorings
+GERMAN CHAMOMILE FLOWER,Spices, Herbs and Flavorings
+ROMAN CHAMOMILE FLOWER,Spices, Herbs and Flavorings
+
+# [GREENS]
+# COLLARD GREENS,Vegetables and Vegetable Products
+# COLLARD GREENS JUICE,Vegetables and Vegetable Products
+# MUSTARD GREENS,Vegetables and Vegetable Products
+
+[ARTICHOKE]
+ARTICHOKE,Vegetables and Vegetable Products
+ARTICHOKE LEAF,Vegetables and Vegetable Products
+JERUSALEM ARTICHOKE,Vegetables and Vegetable Products
+
+[COFFEE]
+BREWED COFFEE,Beverages
+COFFEE BEAN,Nut and Seed Products
+INSTANT COFFEE,Beverages
+
+[PASTA]
+BROWN RICE PASTA,Grains and Grain Products
+PASTA,Grains and Grain Products
+RICE PASTA,Grains and Grain Products
+
+[CHERRY]
+CHERRY,Fruits and Fruit Products
+CHERRY JUICE,Fruits and Fruit Products
+SOUR CHERRY,Fruits and Fruit Products
+
+[RADISH]
+DAIKON RADISH,Vegetables and Vegetable Products
+RADISH,Vegetables and Vegetable Products
+RADISH JUICE,Vegetables and Vegetable Products
+
+[GRAPE]
+GRAPE,Fruits and Fruit Products
+GRAPE JUICE,Fruits and Fruit Products
+GRAPE SEED,Nut and Seed Products
+
+[PARSLEY]
+JAPANESE PARSLEY,Spices, Herbs and Flavorings
+PARSLEY,Spices, Herbs and Flavorings
+PARSLEY JUICE,Spices, Herbs and Flavorings
+
+[LEEK]
+LEEK,Vegetables and Vegetable Products
+LEEK JUICE,Vegetables and Vegetable Products
+LEEK STOCK,Spices, Herbs and Flavorings
+
+[LIME]
+LIME,Fruits and Fruit Products
+LIME JUICE,Fruits and Fruit Products
+LIME PEEL,Fruits and Fruit Products
+
+[MANGO]
+MANGO,Fruits and Fruit Products
+MANGO BUTTER,Fats and Oils
+MANGO JUICE,Fruits and Fruit Products
+
+[MILLET]
+MILLET,Grains and Grain Products
+MILLET FLOUR,Grains and Grain Products
+ROLLED MILLET,Grains and Grain Products
+
+[PRUNE]
+PRUNE,Fruits and Fruit Products
+PRUNE JUICE,Fruits and Fruit Products
+PRUNE PASTE,Fruits and Fruit Products
+
+[TRITICALE]
+ROLLED TRITICALE,Grains and Grain Products
+TRITICALE,Grains and Grain Products
+TRITICALE FLOUR,Grains and Grain Products
+
+[SOY]
+SOY BRAN,Legumes and Legume Products
+SOY FLOUR,Legumes and Legume Products
+SOY SAUCE,Spices, Herbs and Flavorings
+
+# [WATER]
+# COCONUT WATER,Beverages
+# WATER,Beverages
+# WATER CHESTNUT,Vegetables and Vegetable Products
+
+# [PEA]
+# PEA FLOUR,Legumes and Legume Products
+# PEA STARCH,Legumes and Legume Products
+# SUGAR PEA,Legumes and Legume Products
+
+[SPELT]
+ROLLED SPELT,Grains and Grain Products
+SPELT,Grains and Grain Products
+SPELT FLOUR,Grains and Grain Products
+
+# [MEAL]
+# CORN MEAL,Grains and Grain Products
+# SESAME MEAL,Nut and Seed Products
+# SOYBEAN MEAL,Legumes and Legume Products
+
+[COLLARD]
+COLLARD GREENS,Vegetables and Vegetable Products
+COLLARD GREENS JUICE,Vegetables and Vegetable Products
+
+# # [GLUTINOUS]
+# # GLUTINOUS RICE,Grains and Grain Products
+# # GLUTINOUS RICE FLOUR,Grains and Grain Products
+
+# [MANDARIN]
+# MANDARIN ORANGE,Fruits and Fruit Products
+# MANDARIN ORANGE JUICE,Fruits and Fruit Products
+
+[PASSION FRUIT]
+PASSION FRUIT,Fruits and Fruit Products
+PASSION FRUIT JUICE,Fruits and Fruit Products
+
+# [RICOTTA CHEESE]
+# RICOTTA CHEESE,Dairy and Dairy Products
+# RICOTTA IMPASTATA CHEESE,Dairy and Dairy Products
+
+# [ROMAINE]
+# ROMAINE LETTUCE,Vegetables and Vegetable Products
+# ROMAINE LETTUCE JUICE,Vegetables and Vegetable Products
+
+[ACAI]
+ACAI BERRY,Fruits and Fruit Products
+ACAI BERRY JUICE,Fruits and Fruit Products
+
+[ALOE]
+ALOE VERA,Vegetables and Vegetable Products
+ALOE VERA JUICE,Vegetables and Vegetable Products
+
+[CHIA]
+CHIA SEED,Nut and Seed Products
+CHIA SEED FLOUR,Nut and Seed Products
+
+[FABA]
+FABA BEAN,Legumes and Legume Products
+FABA BEAN FLOUR,Legumes and Legume Products
+
+[MONK FRUIT]
+MONK FRUIT,Fruits and Fruit Products
+MONK FRUIT JUICE,Fruits and Fruit Products
+
+# [NAVY]
+# NAVY BEAN,Legumes and Legume Products
+# NAVY BEAN FLOUR,Legumes and Legume Products
+
+# [CARAWAY]
+# BLACK CARAWAY SEED,Spices, Herbs and Flavorings
+# CARAWAY SEED,Spices, Herbs and Flavorings
+
+# [GUAYUSA]
+# BREWED GUAYUSA TEA,Beverages
+# GUAYUSA TEA,Spices, Herbs and Flavorings
+
+# [ROMANO]
+# PECORINO ROMANO CHEESE,Dairy and Dairy Products
+# ROMANO CHEESE,Dairy and Dairy Products
+
+[ARROWROOT]
+ARROWROOT FLOUR,Vegetables and Vegetable Products
+ARROWROOT STARCH,Grains and Grain Products
+
+[BUFFALO]
+BUFFALO MEAT,Meats and Meat Products
+BUFFALO MILK,Dairy and Dairy Products
+
+[CASHEW]
+CASHEW FRUIT,Fruits and Fruit Products
+CASHEW NUT,Nut and Seed Products
+
+# [CITRUS]
+# CITRUS JUICE,Fruits and Fruit Products
+# CITRUS PEEL,Fruits and Fruit Products
+
+# [EDIBLE]
+# EDIBLE FLOWER,Spices, Herbs and Flavorings
+# EDIBLE SEAWEED,Algae
+
+# [GROUND]
+# GROUND BEEF,Meats and Meat Products
+# GROUND PORK,Meats and Meat Products
+
+[LOBSTER]
+LOBSTER MEAT,Seafood and Seafood Products
+LOBSTER STOCK,Spices, Herbs and Flavorings
+
+[PEPPERMINT]
+PEPPERMINT LEAF,Spices, Herbs and Flavorings
+PEPPERMINT PLANT,Spices, Herbs and Flavorings
+
+[QUINOA]
+QUINOA FLOUR,Grains and Grain Products
+QUINOA GRAIN,Grains and Grain Products
+
+[SUNFLOWER]
+SUNFLOWER KERNEL,Nut and Seed Products
+SUNFLOWER SEED,Nut and Seed Products
+
+[TAPIOCA]
+TAPIOCA FLOUR,Vegetables and Vegetable Products
+TAPIOCA STARCH,Grains and Grain Products
+
+# [VEGETABLE]
+# VEGETABLE BROTH,Spices, Herbs and Flavorings
+# VEGETABLE JUICE,Vegetables and Vegetable Products
+
+# [WINTER]
+# WINTER SAVORY,Spices, Herbs and Flavorings
+# WINTER SQUASH,Vegetables and Vegetable Products
+
+# [JAVA]
+# BREWED JAVA TEA,Beverages
+# JAVA TEA,Spices, Herbs and Flavorings
+
+# [WHOLE]
+# LIQUID WHOLE EGG,Eggs and Egg Products
+# WHOLE EGG,Eggs and Egg Products
+
+[CRAB]
+CRAB MEAT,Seafood and Seafood Products
+CRAB STOCK,Spices, Herbs and Flavorings
+
+# [SHEA]
+# SHEA BUTTER,Nut and Seed Products
+# SHEA NUT,Nut and Seed Products
+
+[SHEEP]
+SHEEP CHEESE,Dairy and Dairy Products
+SHEEP MEAT,Meats and Meat Products
+
+# [SOUR]
+# SOUR CHERRY,Fruits and Fruit Products
+# SOUR CREAM,Dairy and Dairy Products
+
+# [STAR]
+# STAR ANISE,Spices, Herbs and Flavorings
+# STAR FRUIT,Fruits and Fruit Products
+
+[ACEROLA]
+ACEROLA,Fruits and Fruit Products
+ACEROLA JUICE,Fruits and Fruit Products
+
+[ALFALFA]
+ALFALFA,Legumes and Legume Products
+ALFALFA GRASS,Spices, Herbs and Flavorings
+
+[APRICOT]
+APRICOT,Fruits and Fruit Products
+APRICOT KERNEL,Fruits and Fruit Products
+
+[BEETROOT]
+BEETROOT,Vegetables and Vegetable Products
+BEETROOT JUICE,Vegetables and Vegetable Products
+
+[BLUEBERRY]
+BLUEBERRY,Fruits and Fruit Products
+BLUEBERRY JUICE,Fruits and Fruit Products
+
+[BOYSENBERRY]
+BOYSENBERRY,Fruits and Fruit Products
+BOYSENBERRY JUICE,Fruits and Fruit Products
+
+# [CHESTNUT]
+# CHESTNUT LEAF,Spices, Herbs and Flavorings
+# WATER CHESTNUT,Vegetables and Vegetable Products
+
+[CHICKPEA]
+CHICKPEA,Legumes and Legume Products
+CHICKPEA FLOUR,Legumes and Legume Products
+
+[CHOKEBERRY]
+CHOKEBERRY,Fruits and Fruit Products
+CHOKEBERRY JUICE,Fruits and Fruit Products
+
+# [CITRON]
+# CITRON,Fruits and Fruit Products
+# CITRON MELON,Fruits and Fruit Products
+
+[CORIANDER]
+CORIANDER,Spices, Herbs and Flavorings
+CORIANDER SEED,Spices, Herbs and Flavorings
+
+[CUCUMBER]
+CUCUMBER,Vegetables and Vegetable Products
+CUCUMBER JUICE,Vegetables and Vegetable Products
+
+[ELDERBERRY]
+ELDERBERRY,Fruits and Fruit Products
+ELDERBERRY JUICE,Fruits and Fruit Products
+
+[FENUGREEK]
+FENUGREEK,Vegetables and Vegetable Products
+FENUGREEK SEED,Spices, Herbs and Flavorings
+
+[GENIPAP]
+GENIPAP,Fruits and Fruit Products
+GENIPAP JUICE,Fruits and Fruit Products
+
+[GRAPEFRUIT]
+GRAPEFRUIT,Fruits and Fruit Products
+GRAPEFRUIT JUICE,Fruits and Fruit Products
+
+[HAZELNUT]
+HAZELNUT,Nut and Seed Products
+HAZELNUT PASTE,Nut and Seed Products
+
+[HIBISCUS]
+HIBISCUS,Spices, Herbs and Flavorings
+HIBISCUS JUICE,Spices, Herbs and Flavorings
+
+[ILLIPE]
+ILLIPE,Nut and Seed Products
+ILLIPE BUTTER,Nut and Seed Products
+
+[KIWI]
+KIWIFRUIT,Fruits and Fruit Products
+KIWIFRUIT JUICE,Fruits and Fruit Products
+
+[KONJAC]
+KONJAC,Vegetables and Vegetable Products
+KONJAC ROOT,Vegetables and Vegetable Products
+
+[LENTIL]
+LENTIL,Legumes and Legume Products
+LENTIL FLOUR,Legumes and Legume Products
+
+[LICORICE]
+LICORICE,Spices, Herbs and Flavorings
+LICORICE JUICE,Spices, Herbs and Flavorings
+
+[LINSEED]
+LINSEED,Nut and Seed Products
+LINSEED FLOUR,Nut and Seed Products
+
+[MARJORAM]
+MARJORAM,Spices, Herbs and Flavorings
+MARJORAM SEED,Spices, Herbs and Flavorings
+
+[MUSSEL]
+MUSSEL,Seafood and Seafood Products
+MUSSEL MEAT,Seafood and Seafood Products
+
+[PEANUT]
+PEANUT,Legumes and Legume Products
+PEANUT FLOUR,Legumes and Legume Products
+
+[PINEAPPLE]
+PINEAPPLE,Fruits and Fruit Products
+PINEAPPLE JUICE,Fruits and Fruit Products
+
+[PISTACHIO]
+PISTACHIO,Nut and Seed Products
+PISTACHIO FLOUR,Nut and Seed Products
+
+[PITAYA]
+PITAYA,Fruits and Fruit Products
+PITAYA JUICE,Fruits and Fruit Products
+
+[POMEGRANATE]
+POMEGRANATE,Fruits and Fruit Products
+POMEGRANATE JUICE,Fruits and Fruit Products
+
+[SORGHUM]
+SORGHUM,Grains and Grain Products
+SORGHUM FLOUR,Grains and Grain Products
+
+[SPINACH]
+SPINACH,Vegetables and Vegetable Products
+SPINACH JUICE,Vegetables and Vegetable Products
+
+[ZUCCHINI]
+ZUCCHINI,Vegetables and Vegetable Products
+ZUCCHINI JUICE,Vegetables and Vegetable Products
+
+# [BREAST]
+# CHICKEN BREAST MEAT,Meats and Meat Products
+# TURKEY BREAST MEAT,Meats and Meat Products
+
+# [VERA]
+# ALOE VERA,Vegetables and Vegetable Products
+# ALOE VERA JUICE,Vegetables and Vegetable Products
+
+[EWE]
+EWE CREAM,Dairy and Dairy Products
+EWE MILK,Dairy and Dairy Products
+
+# [BALM]
+# LEMON BALM,Spices, Herbs and Flavorings
+# LEMON BALM LEAF,Spices, Herbs and Flavorings
+
+# [SEA]
+# SEA BUCKTHORN,Fruits and Fruit Products
+# SEA SALT,Spices, Herbs and Flavorings
+
+# [CIDER]
+# APPLE CIDER,Fruits and Fruit Products
+# CIDER VINEGAR,Spices, Herbs and Flavorings
+
+[CHARD]
+CHARD,Vegetables and Vegetable Products
+CHARD JUICE,Vegetables and Vegetable Products
+
+# [MELON]
+# CITRON MELON,Fruits and Fruit Products
+# MELON JUICE,Fruits and Fruit Products
+
+[DATE]
+DATE,Fruits and Fruit Products
+DATE PASTE,Fruits and Fruit Products
+
+[DILL]
+DILL,Spices, Herbs and Flavorings
+DILL SEED,Spices, Herbs and Flavorings
+
+[FARRO]
+FARRO,Grains and Grain Products
+FARRO FLOUR,Grains and Grain Products
+
+[GOJI]
+GOJI,Fruits and Fruit Products
+GOJI JUICE,Fruits and Fruit Products
+
+[KALE]
+KALE,Vegetables and Vegetable Products
+KALE JUICE,Vegetables and Vegetable Products
+
+# [MALT]
+# MALT,Grains and Grain Products
+# MALT VINEGAR,Spices, Herbs and Flavorings
+
+[MINT]
+MINT,Spices, Herbs and Flavorings
+MINT JUICE,Spices, Herbs and Flavorings
+
+[PECAN]
+PECAN,Nut and Seed Products
+PECAN FLOUR,Nut and Seed Products
+
+# [PINE]
+# PINE NUT,Nut and Seed Products
+# WHITE PINE BARK,Spices, Herbs and Flavorings
+
+[TEFF]
+TEFF,Grains and Grain Products
+TEFF FLOUR,Grains and Grain Products
+
+[VEAL]
+VEAL,Meats and Meat Products
+VEAL STOCK,Spices, Herbs and Flavorings
+
+# [DARK]
+# CHICKEN DARK MEAT,Meats and Meat Products
+# TURKEY DARK MEAT,Meats and Meat Products
+
+# [KERNEL]
+# APRICOT KERNEL,Fruits and Fruit Products
+# SUNFLOWER KERNEL,Nut and Seed Products
+
+# [FLOUNDER]
+# ARROWTOOTH FLOUNDER,Seafood and Seafood Products
+# FLOUNDER,Seafood and Seafood Products
+
+# [POWDER]
+# BAKING POWDER,Additives and Isolated ingredients (includes sweeteners)
+# COCOA POWDER,Nut and Seed Products
+
+[SEAWEED]
+EDIBLE SEAWEED,Algae
+SEAWEED,Algae
+
+[GOOSEBERRY]
+GOOSEBERRY,Fruits and Fruit Products
+INDIAN GOOSEBERRY,Fruits and Fruit Products
+
+[YOGURT]
+GREEK YOGURT,Dairy and Dairy Products
+YOGURT,Dairy and Dairy Products
+
+[OREGANO]
+MEXICAN OREGANO,Spices, Herbs and Flavorings
+OREGANO,Spices, Herbs and Flavorings
+
+[NOODLES]
+NOODLES,Grains and Grain Products
+RICE NOODLES,Grains and Grain Products
+
+[FIG]
+FIG,Fruits and Fruit Products
+FIG PASTE,Fruits and Fruit Products
+
+# [GRAIN]
+# AMARANTH GRAIN,Grains and Grain Products
+# QUINOA GRAIN,Grains and Grain Products
+
+[ANISE]
+ANISE,Spices, Herbs and Flavorings
+STAR ANISE,Spices, Herbs and Flavorings
+
+# [BASIL]
+# BASIL,Spices, Herbs and Flavorings
+# HOLY BASIL,Spices, Herbs and Flavorings
+
+# [SKIN]
+# CHICKEN SKIN,Meats and Meat Products
+# TURKEY SKIN,Meats and Meat Products
+
+# [BARK]
+# CINCHONA BARK,Spices, Herbs and Flavorings
+# WHITE PINE BARK,Spices, Herbs and Flavorings
+
+# [PLUM]
+# PLUM,Fruits and Fruit Products
+# UME PLUM VINEGAR,Spices, Herbs and Flavorings
+

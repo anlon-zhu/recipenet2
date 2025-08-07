@@ -39,3 +39,9 @@ yarn-error.log*
 
 # Supabase
 supabase/.temp/
+venv/
+
+# Seed
+seed/*.csv
+seed/*.xlsx
+
