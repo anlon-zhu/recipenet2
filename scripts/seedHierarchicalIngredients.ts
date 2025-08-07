@@ -22,6 +22,7 @@
 // ========== Imports ==========
 import { EmbeddingGenerator } from './utils/embeddings';
 import { DatabaseSeeder } from './utils/dbSeeder';
+import { createInterface } from 'readline';
 
 // ========== Environment Variables ==========
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -46,7 +47,7 @@ if (missingVars.length > 0) {
  * Prompts the user for confirmation before proceeding with database operations
  */
 async function promptForConfirmation(): Promise<boolean> {
-  const readline = require('readline').createInterface({
+  const readline = createInterface({
     input: process.stdin,
     output: process.stdout
   });
