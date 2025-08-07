@@ -27,15 +27,6 @@ interface ParentChildRelationship {
   };
 }
 
-interface Alias {
-  id: string;
-  name: string;
-  ingredient_id: string;
-  ingredient: {
-    name: string;
-  };
-}
-
 // Check for required environment variables
 if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
   throw new Error('Missing Supabase environment variables!');

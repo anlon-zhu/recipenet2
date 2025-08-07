@@ -20,7 +20,6 @@
  */
 
 // ========== Imports ==========
-import fs from 'fs';
 import { EmbeddingGenerator } from './utils/embeddings';
 import { DatabaseSeeder } from './utils/dbSeeder';
 

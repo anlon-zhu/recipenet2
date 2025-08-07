@@ -104,7 +104,7 @@ export class EmbeddingGenerator {
               }
             },
             this.config.retry,
-            (attempt, delay, error) => {
+            (attempt, delay, _error) => {
               console.warn(`Rate limit hit. Retry attempt ${attempt}/${this.config.retry.maxRetries} after ${delay}ms delay...`);
             }
           );
