@@ -4,13 +4,16 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests --coverage",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "seed": "dotenv -e .env.local -- tsx scripts/seedHierarchicalIngredients.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google/genai": "^1.13.0",
+    "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.53.0",
     "@types/node": "^24.2.0",
     "csv-parse": "^5.5.6",
@@ -24,8 +27,10 @@
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
     "dotenv": "^17.2.1",
+    "dotenv-cli": "^10.0.0",
     "eslint": "^9.32.0",
     "jest": "^30.0.5",
-    "ts-jest": "^29.4.1"
+    "ts-jest": "^29.4.1",
+    "tsx": "^4.20.3"
   }
 }
