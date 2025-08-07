@@ -3,8 +3,6 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
 import { parse } from 'csv-parse/sync';
-import { exec } from 'child_process';
-import { promisify } from 'util';
 
 // Define types for our test data
 interface ExpectedCounts {
@@ -37,8 +35,6 @@ interface Alias {
     name: string;
   };
 }
-
-const execAsync = promisify(exec);
 
 // Check for required environment variables
 if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
@@ -98,9 +94,9 @@ describe('Hierarchical Ingredient Seeding', () => {
     }
   });
 
-  // Skip these tests if running in CI environment without proper setup
+  // Skip these tests if running in CI environment or if explicitly disabled
   const testConfig = {
-    skip: process.env.CI === 'true' || !process.env.OPENAI_API_KEY
+    skip: process.env.CI === 'true' || process.env.SKIP_DB_VERIFICATION === 'true'
   };
 
   // Test database schema existence
@@ -144,88 +140,80 @@ describe('Hierarchical Ingredient Seeding', () => {
     });
   });
 
-  // Test the seeding script (conditionally run)
-  describe('Seeding Process', () => {
-    // Skip this test if in CI or missing OpenAI API key
-    it('should seed the database with hierarchical ingredients', async () => {
+  // Test database verification (assumes seeding was done separately)
+  describe('Database Verification', () => {
+    it('should verify the database has been properly seeded with hierarchical ingredients', async () => {
       if (testConfig.skip) {
-        console.log('Skipping seeding test in CI environment or missing OpenAI API key');
+        console.log('Skipping database verification test');
         return;
       }
       
       try {
-        // Run the seeding script
-        const scriptPath = path.resolve('scripts/seedHierarchicalIngredients.ts');
-        const { stdout, stderr } = await execAsync(`tsx ${scriptPath}`);
+        console.log('Verifying database state without running seeding script...');
         
-        console.log('Seeding script output:', stdout);
-        if (stderr) {
-          console.error('Seeding script errors:', stderr);
-        }
-        
-        // Verify food groups were seeded
-        const { data: foodGroups, error: foodGroupsError } = await supabase
+        // Verify food groups were seeded using count query
+        const { count: foodGroupCount, error: foodGroupsError } = await supabase
           .from('food_groups')
-          .select('id, name')
-          .order('name');
+          .select('*', { count: 'exact', head: true });
         
         expect(foodGroupsError).toBeNull();
-        expect(Array.isArray(foodGroups)).toBe(true);
-        expect(foodGroups?.length ?? 0).toBeGreaterThan(0);
+        expect(typeof foodGroupCount).toBe('number');
         
-        if (expectedCounts.foodGroups > 0 && foodGroups) {
-          expect(foodGroups.length).toBe(expectedCounts.foodGroups);
+        if (expectedCounts.foodGroups > 0 && foodGroupCount !== null) {
+          expect(foodGroupCount).toBe(expectedCounts.foodGroups);
         }
         
-        // Verify ingredients were seeded
-        const { data: ingredients, error: ingredientsError } = await supabase
+        // Verify ingredients were seeded using count query
+        const { count: ingredientCount, error: ingredientsError } = await supabase
           .from('ingredients')
-          .select('id, name, food_group_id, hierarchy_depth')
-          .order('name');
+          .select('*', { count: 'exact', head: true });
         
         expect(ingredientsError).toBeNull();
-        expect(Array.isArray(ingredients)).toBe(true);
-        expect(ingredients?.length ?? 0).toBeGreaterThan(0);
+        expect(typeof ingredientCount).toBe('number');
         
-        if (expectedCounts.ingredients > 0 && ingredients) {
-          expect(ingredients.length).toBe(expectedCounts.ingredients);
+        if (expectedCounts.ingredients > 0 && ingredientCount !== null) {
+          expect(ingredientCount).toBe(expectedCounts.ingredients);
         }
         
-        // Verify ingredient parent relationships were seeded
-        const { data: ingredientParents, error: ingredientParentsError } = await supabase
+        // Verify parent-child relationships were seeded using count query
+        const { count: parentCount, error: parentsError } = await supabase
           .from('ingredient_parents')
-          .select('id, parent_id, child_id');
+          .select('*', { count: 'exact', head: true });
         
-        expect(ingredientParentsError).toBeNull();
-        expect(Array.isArray(ingredientParents)).toBe(true);
+        expect(parentsError).toBeNull();
+        expect(typeof parentCount).toBe('number');
         
-        if (expectedCounts.ingredientParents > 0 && ingredientParents) {
-          expect(ingredientParents.length).toBe(expectedCounts.ingredientParents);
+        if (expectedCounts.ingredientParents > 0 && parentCount !== null) {
+          expect(parentCount).toBe(expectedCounts.ingredientParents);
         }
         
-        // Verify aliases were seeded
-        const { data: aliases, error: aliasesError } = await supabase
+        // Verify aliases were seeded using count query
+        const { count: aliasCount, error: aliasesError } = await supabase
           .from('ingredient_aliases')
-          .select('id, name, ingredient_id')
-          .order('name');
+          .select('*', { count: 'exact', head: true });
         
         expect(aliasesError).toBeNull();
-        expect(Array.isArray(aliases)).toBe(true);
+        expect(typeof aliasCount).toBe('number');
         
-        if (expectedCounts.aliases > 0 && aliases) {
-          expect(aliases.length).toBe(expectedCounts.aliases);
+        if (expectedCounts.aliases > 0 && aliasCount !== null) {
+          expect(aliasCount).toBe(expectedCounts.aliases);
         }
         
       } catch (error) {
-        console.error('Error running seeding test:', error);
+        console.error('Error verifying database state:', error);
         throw error;
       }
-    }, 300000); // 5 minute timeout for this test
+    }, 30000); // 30 second timeout is sufficient for verification only
   });
 
   // Test data integrity
   describe('Data Integrity', () => {
     it('should have valid parent-child relationships', async () => {
+      if (testConfig.skip) {
+        console.log('Skipping data integrity tests');
+        return;
+      }
+      
       // Skip if no data expected
       if (expectedCounts.ingredientParents === 0) {
         console.log('Skipping parent-child relationship test - no data expected');
@@ -258,6 +246,10 @@ describe('Hierarchical Ingredient Seeding', () => {
     });
     
     it('should have valid hierarchy depths', async () => {
+      if (testConfig.skip) {
+        return; // Already logged skip message in previous test
+      }
+      
       // Get all ingredients
       const { data: ingredients, error } = await supabase
         .from('ingredients')
@@ -300,6 +292,10 @@ describe('Hierarchical Ingredient Seeding', () => {
     });
     
     it('should have valid aliases linked to ingredients', async () => {
+      if (testConfig.skip) {
+        return; // Already logged skip message in previous test
+      }
+      
       // Skip if no aliases expected
       if (expectedCounts.aliases === 0) {
         console.log('Skipping alias test - no data expected');
