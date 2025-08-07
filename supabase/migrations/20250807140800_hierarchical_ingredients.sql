@@ -73,6 +73,8 @@ CREATE TRIGGER update_ingredient_aliases_updated_at BEFORE UPDATE ON ingredient_
 -- Function to detect circular hierarchies
 CREATE OR REPLACE FUNCTION check_ingredient_hierarchy_cycle()
 RETURNS TRIGGER AS $$
+DECLARE
+    is_cycle BOOLEAN;
 BEGIN
     -- Check if new parent is already a descendant of the child
     WITH RECURSIVE descendents AS (
@@ -82,7 +84,9 @@ BEGIN
         FROM ingredient_parents ip
         JOIN descendents d ON d.child_id = ip.parent_id
     )
-    IF EXISTS (SELECT 1 FROM descendents WHERE child_id = NEW.parent_id) THEN
+    SELECT EXISTS (SELECT 1 FROM descendents WHERE child_id = NEW.parent_id) INTO is_cycle;
+    
+    IF is_cycle THEN
         RAISE EXCEPTION 'Circular hierarchy detected: % would create a cycle', NEW.parent_id;
     END IF;
     
