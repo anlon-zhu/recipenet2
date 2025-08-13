@@ -3,12 +3,32 @@
 // This enables autocomplete, go to definition, etc.
 
 import { serve } from "https://deno.land/std@0.200.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.53.0";
+import { createClient } from "@supabase/supabase-js";
+import { generateEmbedding } from "../_shared/embeddings.ts";
+
+// Type definitions for database results
+interface VectorSearchResult {
+  ingredient_id: string;
+  ingredient_name: string;
+  best_alias: string;
+  alias_id: string;
+  distance: number;
+}
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY")!;
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+// Normalize text for better matching
+function normalizeText(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, ' ') // normalize whitespace
+    .replace(/[^\w\s]/g, ''); // remove special characters
+}
 
 serve(async (req) => {
   try {
@@ -34,10 +54,10 @@ serve(async (req) => {
       });
     }
 
-    const { pantry_ids, min_coverage = 1.0, limit = 100 } = await req.json();
+    const { text, topN = 6 } = await req.json();
     
-    if (!pantry_ids || !Array.isArray(pantry_ids)) {
-      return new Response(JSON.stringify({ error: "pantry_ids is required and must be an array" }), {
+    if (!text || typeof text !== "string") {
+      return new Response(JSON.stringify({ error: "text is required and must be a string" }), {
         status: 400,
         headers: { 
           "Content-Type": "application/json",
@@ -46,67 +66,47 @@ serve(async (req) => {
       });
     }
 
-    // Validate UUIDs format (basic validation)
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-    const invalidIds = pantry_ids.filter(id => typeof id !== 'string' || !uuidRegex.test(id));
-    
-    if (invalidIds.length > 0) {
-      return new Response(JSON.stringify({ 
-        error: "Invalid UUID format in pantry_ids",
-        invalid_ids: invalidIds
-      }), {
-        status: 400,
-        headers: { 
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        },
-      });
+    // 1. Normalize text
+    const normalizedText = normalizeText(text);
+
+    // 2. Generate embedding for vector search
+    const embedding = await generateEmbedding(normalizedText, GEMINI_API_KEY, { 
+      taskType: 'RETRIEVAL_QUERY' // Use QUERY for search queries
+    });
+
+    if (!embedding || embedding.length === 0) {
+      throw new Error("Failed to generate embedding");
     }
 
-    // Call the RPC function for recipe matching
-    const { data: recipes, error: recipesError } = await supabase.rpc(
-      "rpc_recipes_by_pantry",
+    // 3. Run vector search via RPC
+    const { data: searchResults, error: searchError } = await supabase.rpc(
+      "rpc_vector_search_ingredients",
       {
-        pantry_ids,
-        min_coverage: parseFloat(min_coverage.toString()),
-        limit_count: parseInt(limit.toString(), 10),
+        query_embedding: embedding,
+        match_count: topN,
       }
     );
 
-    if (recipesError) {
-      console.error("RPC error:", recipesError);
-      throw new Error(`Database query failed: ${recipesError.message}`);
+    if (searchError) {
+      console.error("RPC error:", searchError);
+      throw new Error(`Database search failed: ${searchError.message}`);
     }
 
-    // Optionally get suggestions for missing ingredients if coverage is less than 1.0
-    let suggestions = [];
-    if (min_coverage < 1.0) {
-      const { data: suggestionsData, error: suggestionsError } = await supabase.rpc(
-        "rpc_suggest_missing_ingredients",
-        {
-          pantry_ids,
-          limit_count: 10,
-        }
-      );
+    // 4. Return ranked candidates (no DB changes)
+    const results = (searchResults || []).map((row: VectorSearchResult) => ({
+      ingredient_id: row.ingredient_id,
+      ingredient_name: row.ingredient_name,
+      best_alias: row.best_alias,
+      alias_id: row.alias_id,
+      distance: row.distance,
+      confidence: Math.max(0, 1 - row.distance) // Convert distance to confidence score
+    }));
 
-      if (suggestionsError) {
-        console.warn("Failed to fetch ingredient suggestions:", suggestionsError);
-      } else {
-        suggestions = suggestionsData || [];
-      }
-    }
-
-    const response = {
-      recipes: recipes || [],
-      suggestions,
-      metadata: {
-        pantry_size: pantry_ids.length,
-        min_coverage,
-        total_results: (recipes || []).length,
-      }
-    };
-
-    return new Response(JSON.stringify(response), {
+    return new Response(JSON.stringify({
+      query: text,
+      normalized_query: normalizedText,
+      results
+    }), {
       status: 200,
       headers: { 
         "Content-Type": "application/json",
@@ -136,9 +136,9 @@ serve(async (req) => {
 
   1. Run `supabase start` (see: https://supabase.com/docs/reference/cli/supabase-start)
   2. Make an HTTP request:
-  curl -i --location --request POST 'http://127.0.0.1:54321/functions/v1/recipesByPantry' \
+  curl -i --location --request POST 'http://127.0.0.1:54321/functions/v1/match_ingredient_text' \
     --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0' \
     --header 'Content-Type: application/json' \
-    --data '{"name":"Functions"}'
+    --data '{"text":"chikn breast","topN":3}'
 
 */

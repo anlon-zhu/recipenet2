@@ -1,0 +1,14 @@
+{
+  "imports": {
+    "https://deno.land/std@0.200.0/": "https://deno.land/std@0.200.0/",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.53.0"
+  },
+  "tasks": {
+    "deploy": "supabase functions deploy upsert_from_text"
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "strict": false,
+    "lib": ["deno.window"]
+  }
+}

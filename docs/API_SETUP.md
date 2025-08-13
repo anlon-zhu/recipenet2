@@ -1,191 +1,156 @@
-# Recipe Graph API Setup
-
-This document describes the production-ready API implementation for the Recipe Graph system, featuring RPC functions and Edge Functions that expose your hierarchical ingredient database to frontend applications.
+# Ingredient & Recipe API
 
 ## Overview
 
-The API consists of:
-- **4 RPC Functions** (Postgres stored procedures) for core database operations
-- **3 Edge Functions** (Deno/TypeScript) for HTTP endpoints with Gemini AI integration
-- **Comprehensive Jest integration tests** for quality assurance
+Users interact with **ingredients** and **recipes** in two main ways:
 
-## Architecture
+1. **Read flows** (search & match):
+   * Adding ingredients to their pantry
+   * Searching for recipes by ingredients
+   * Filling in recipe ingredients during creation/edit
+   * These use cached client-side matching + RPC fallback for vector search
 
-```
-Frontend Application
-        ↓
-Edge Functions (HTTP APIs)
-        ↓
-RPC Functions (Postgres)
-        ↓
-Hierarchical Ingredient Database
-```
+2. **Write flows** (map or create):
+   * Mapping messy user-entered text to an existing ingredient (via alias)
+   * Creating new ingredients when no match exists
+   * These use the shared matching helper + one unified API endpoint with an `action` flag
 
-## RPC Functions (Database Layer)
+---
 
-### 1. `rpc_vector_search_ingredients`
+## Database Schema
 
-**Purpose**: Vector search across ingredients and aliases with deduplication by canonical ingredient.
+**Tables**:
+* `ingredients`
+* `ingredient_aliases`
+* `food_groups`
+* `recipes`
+* `recipe_ingredients`
 
-```sql
-SELECT * FROM rpc_vector_search_ingredients(
-  query_embedding := '[1536-dimensional vector]',
-  match_count := 6
-);
-```
+---
 
-**Returns**: `ingredient_id`, `ingredient_name`, `best_alias`, `alias_id`, `distance`
+## API Layers
 
-### 2. `rpc_recipes_by_pantry`
+### 1. **Standard Supabase REST (CRUD)**
 
-**Purpose**: Find recipes based on pantry ingredients with coverage metadata.
+Supabase auto-generates REST endpoints for all tables. These cover basic CRUD when no AI/matching logic is required.
 
-```sql
-SELECT * FROM rpc_recipes_by_pantry(
-  pantry_ids := ARRAY['uuid1', 'uuid2']::uuid[],
-  min_coverage := 0.8,
-  limit_count := 100
-);
-```
+| Method | Endpoint                  | Description                   |
+| ------ | ------------------------- | ----------------------------- |
+| GET    | /ingredients              | List all ingredients          |
+| POST   | /ingredients              | Create a new ingredient       |
+| PATCH  | /ingredients/:id          | Update an existing ingredient |
+| DELETE | /ingredients/:id          | Delete an ingredient          |
+| GET    | /ingredient_aliases       | List all ingredient aliases   |
+| POST   | /ingredient_aliases       | Create a new ingredient alias |
+| PATCH  | /ingredient_aliases/:id   | Update alias                  |
+| DELETE | /ingredient_aliases/:id   | Delete alias                  |
+| GET    | /recipes                  | List recipes                  |
+| POST   | /recipes                  | Create recipe                 |
+| PATCH  | /recipes/:id              | Update recipe                 |
+| DELETE | /recipes/:id              | Delete recipe                 |
+| GET    | /recipe_ingredients       | List recipe-ingredient links  |
+| POST   | /recipe_ingredients       | Add ingredient to recipe      |
 
-**Returns**: `recipe_id`, `title`, `required_count`, `matched_count`, `coverage`, `missing_ingredient_ids`
+---
 
-### 3. `rpc_suggest_missing_ingredients`
+### 2. **RPC Functions (Database Layer)**
 
-**Purpose**: Suggest ingredients that would unlock the most recipes.
+RPCs run inside Postgres for efficiency & complex queries.
 
-```sql
-SELECT * FROM rpc_suggest_missing_ingredients(
-  pantry_ids := ARRAY['uuid1', 'uuid2']::uuid[],
-  limit_count := 10
-);
-```
+#### a. `rpc_get_all_ingredients_for_matching` *(read)*
 
-**Returns**: `ingredient_id`, `name`, `unlocks`
+Returns all ingredients + aliases in one payload for client-side filtering.
 
-## Edge Functions (HTTP Layer)
+* **Purpose**: Initial cache load at app startup
+* **Output**: `(ingredient_id, ingredient_name, alias_id, alias_name, food_group_name)`
 
-### 1. `canonicalizeIngredient`
+#### b. `rpc_vector_search_ingredients` *(read)*
 
-**Endpoint**: `POST /functions/v1/canonicalizeIngredient`
+Fallback search using embeddings when client cache fails to find a match.
 
-**Purpose**: Canonicalize ingredient names using Gemini embeddings.
+* **Purpose**: Fuzzy AI matching in <500ms
+* **Input**: `query_embedding vector(1536)`, `match_count int`
 
-**Request**:
+---
+
+### 3. **Edge Functions (HTTP Layer)**
+
+Edge Functions handle AI calls, multi-step transactions, and logic that can't live in the DB.
+
+#### a. `match_ingredient_text` *(read)*
+
+* **Purpose**: Use AI + DB to return best ingredient/alias matches for messy input
+* **Flow**:
+  1. Normalize text (case, whitespace, spelling)
+  2. Vector embed via shared embedding function
+  3. Run `rpc_vector_search_ingredients`
+  4. Return ranked candidates (no DB changes)
+
+#### b. `upsert_from_text` *(write)*
+
+* **Purpose**: From messy text, either map to existing ingredient or create new one
+* **Input**:
+
 ```json
 {
-  "name": "boneless chicken breast",
-  "topN": 6
+  "text": "chikn breast",
+  "action": "map",                  // "map" or "create"
+  "ingredient_id": "uuid-optional"  // required for "map"
 }
 ```
 
-**Response**:
-```json
-[
-  {
-    "ingredient_id": "uuid-1",
-    "ingredient_name": "Chicken",
-    "best_alias": "boneless chicken breast",
-    "alias_id": "alias-uuid",
-    "distance": 0.06,
-    "parents": []
-  }
-]
-```
+* **Flow**:
+  1. Normalize + embed text
+  2. If `action="map"` → insert alias row linked to `ingredient_id`
+  3. If `action="create"` → insert into `ingredients`, insert alias if needed, store embedding
+  4. Return final `(ingredient_id, alias_id)`
 
-### 2. `recipesByPantry`
+#### c. `create_recipe_with_embeddings` *(write)* — optional
 
-**Endpoint**: `POST /functions/v1/recipesByPantry`
+* **Purpose**: One-shot recipe + ingredient linking with embeddings
+* **Useful**: Bulk import or guided recipe creation wizard
 
-**Purpose**: Find recipes matching pantry ingredients.
+#### d. `get_recipes_by_ingredients` *(read)*
 
-**Request**:
-```json
-{
-  "pantry_ids": ["uuid1", "uuid2"],
-  "min_coverage": 0.8,
-  "limit": 50
-}
-```
+* **Purpose**: Get recipes by ingredient IDs
+* **Input**: `ingredient_ids` array
+* **Output**: Array of recipes with coverage metadata
 
-## Environment Variables
+---
 
-Required environment variables for Edge Functions:
+## End-to-End User Flow Mapping
 
-```bash
-SUPABASE_URL=your-supabase-url
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-GEMINI_API_KEY=your-gemini-api-key
-```
+**When user types an ingredient**:
 
-## Deployment Instructions
+1. Client filters from cached `rpc_get_all_ingredients_for_matching` data
+2. If empty → `match_ingredient_text` Edge Function → RPC vector search fallback
+3. User sees swipe UI:
+   * ✅ Match → call `upsert_from_text` with `action="map"`
+   * ❌ No match → call `upsert_from_text` with `action="create"`
 
-### Prerequisites
+**When user creates or edits recipe**:
 
-1. **Supabase CLI** installed and authenticated
-2. **Gemini API Key** from Google AI Studio
-3. **Environment variables** configured
+* Use the same flow for each ingredient line
+* If multiple ingredients are new → call `create_recipe_with_embeddings` for efficiency
 
-### Step 1: Deploy RPC Functions
+**When user searches for recipes**:
 
-```bash
-# Apply the migration with RPC functions
-supabase db reset
+1. Client searches for recipes from list of ingredients
+2. Use the same flow for each ingredient line
+3. After getting ingredient IDs, call `get_recipes_by_ingredients`
+4. Return recipes with coverage metadata
 
-# Or apply specific migration
-supabase db push
-```
+---
 
-### Step 2: Deploy Edge Functions
+## Implementation Overview
 
-```bash
-# Deploy all functions
-supabase functions deploy canonicalizeIngredient
-supabase functions deploy recipesByPantry
-supabase functions deploy addOrMapIngredient
-
-# Set environment variables
-supabase secrets set GEMINI_API_KEY=your-key-here
-```
-
-### Step 3: Test Deployment
-
-```bash
-# Run integration tests
-npm run test:integration
-
-# Test individual endpoints
-curl -X POST "https://your-project.supabase.co/functions/v1/canonicalizeIngredient" \
-  -H "Authorization: Bearer your-anon-key" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"chicken breast","topN":3}'
-```
-
-## Testing
-
-The project includes comprehensive integration tests:
-
-```bash
-# Run all tests
-npm test
-
-# Run integration tests only
-npm run test:integration
-
-# Run tests in watch mode
-npm run test:watch
-```
-
-## Performance Considerations
-
-- Vector indexes are optimized with `ivfflat` for fast similarity search
-- Results are paginated and limited to prevent overwhelming responses
-- Edge Functions include proper CORS headers and error handling
-- Gemini API calls use appropriate task types (RETRIEVAL_QUERY vs RETRIEVAL_DOCUMENT)
-
-## Security
-
-- Row Level Security (RLS) is enabled on all tables
-- Service role key is used only in Edge Functions (server-side)
-- Input validation prevents SQL injection and malformed requests
-- UUID validation ensures data integrity
+* **DB Schema**: Tables + indexes from v1.0
+* **REST**: Supabase auto-generated CRUD
+* **RPCs**:
+  * `rpc_get_all_ingredients_for_matching`
+  * `rpc_vector_search_ingredients`
+* **Edge Functions**:
+  * `match_ingredient_text`
+  * `upsert_from_text`
+  * `create_recipe_with_embeddings`
+  * `get_recipes_by_ingredients`
